@@ -1,5 +1,12 @@
 # terraform-provider-openmetadata
 
+> **Moved.** Development continues at
+> [Codility/terraform-provider-openmetadata](https://github.com/Codility/terraform-provider-openmetadata),
+> published as `codility/openmetadata`.
+>
+> This repository is retained for the `0.1.x` releases still served by the
+> `bahram-cdt/openmetadata` registry entry.
+
 Terraform provider for managing [OpenMetadata](https://open-metadata.org/) resources as code.
 
 ## Supported Resources
