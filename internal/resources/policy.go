@@ -10,12 +10,12 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/Codility/terraform-provider-openmetadata/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
-	"github.com/bahram-cdt/terraform-provider-openmetadata/internal/client"
 )
 
 var _ resource.Resource = &PolicyResource{}
@@ -28,16 +28,16 @@ type PolicyResource struct {
 }
 
 type PolicyResourceModel struct {
-	ID  types.String `tfsdk:"id"`
-	Name types.String `tfsdk:"name"`
+	ID          types.String `tfsdk:"id"`
+	Name        types.String `tfsdk:"name"`
 	DisplayName types.String `tfsdk:"display_name"`
 	Description types.String `tfsdk:"description"`
-	Owners types.List `tfsdk:"owners"`
-	Rules types.String `tfsdk:"rules"`
-	Enabled types.Bool `tfsdk:"enabled"`
-	Location types.String `tfsdk:"location"`
-	Domains types.List `tfsdk:"domains"`
-	FQN types.String `tfsdk:"fully_qualified_name"`
+	Owners      types.List   `tfsdk:"owners"`
+	Rules       types.String `tfsdk:"rules"`
+	Enabled     types.Bool   `tfsdk:"enabled"`
+	Location    types.String `tfsdk:"location"`
+	Domains     types.List   `tfsdk:"domains"`
+	FQN         types.String `tfsdk:"fully_qualified_name"`
 }
 
 func NewPolicyResource() resource.Resource {
@@ -52,11 +52,11 @@ func (r *PolicyResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 	resp.Schema = schema.Schema{
 		Description: "Manages an OpenMetadata Policy.",
 		Attributes: map[string]schema.Attribute{
-			"id":                   IDAttribute(),
+			"id":           IDAttribute(),
 			"name":         NameAttribute(),
 			"display_name": DisplayNameAttribute(),
 			"description":  DescriptionAttribute(false),
-			"owners":  OwnersAttribute(),
+			"owners":       OwnersAttribute(),
 			"rules": schema.StringAttribute{
 				Description: "Policy rules as a JSON array string. At least one rule is required. " +
 					"The value is sent to the API on create/update but is not read back (the API may " +
@@ -65,16 +65,16 @@ func (r *PolicyResource) Schema(_ context.Context, _ resource.SchemaRequest, res
 			},
 			"enabled": schema.BoolAttribute{
 				Description: "Is the policy enabled.",
-				Optional: true,
-				Computed: true,
-				Default:  booldefault.StaticBool(true),
+				Optional:    true,
+				Computed:    true,
+				Default:     booldefault.StaticBool(true),
 			},
 			"location": schema.StringAttribute{
 				Description: "UUID of Location where this policy is applied",
-				Optional: true,
-				Computed: true,
+				Optional:    true,
+				Computed:    true,
 			},
-			"domains": DomainsAttribute(),
+			"domains":              DomainsAttribute(),
 			"fully_qualified_name": FullyQualifiedNameAttribute(),
 		},
 	}

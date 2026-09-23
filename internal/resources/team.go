@@ -7,7 +7,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/bahram-cdt/terraform-provider-openmetadata/internal/client"
+	"github.com/Codility/terraform-provider-openmetadata/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"

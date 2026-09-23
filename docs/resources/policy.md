@@ -26,7 +26,7 @@ resource "openmetadata_policy" "data_access" {
 ### Required
 
 - `name` (String) Unique name identifying the resource.
-- `rules` (String)
+- `rules` (String) Policy rules as a JSON array string. At least one rule is required. The value is sent to the API on create/update but is not read back (the API may reorder JSON fields). Supply the exact JSON you want stored in Terraform state.
 
 ### Optional
 

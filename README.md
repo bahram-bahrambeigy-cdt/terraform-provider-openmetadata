@@ -14,6 +14,7 @@ Terraform provider for managing [OpenMetadata](https://open-metadata.org/) resou
 | `openmetadata_policy` | Access control policies |
 | `openmetadata_role` | Roles referencing policies |
 | `openmetadata_database_service` | Database service connections |
+| `openmetadata_domain` | Domains (Source-aligned, Consumer-aligned, Aggregate) |
 
 ## Quick Start
 
@@ -21,7 +22,7 @@ Terraform provider for managing [OpenMetadata](https://open-metadata.org/) resou
 terraform {
   required_providers {
     openmetadata = {
-      source  = "bahram-cdt/openmetadata"
+      source  = "codility/openmetadata"
       version = "~> 0.1"
     }
   }
@@ -90,6 +91,7 @@ terraform import openmetadata_glossary_term.example "Glossary.TermName"
 terraform import openmetadata_policy.example "PolicyName"
 terraform import openmetadata_role.example "RoleName"
 terraform import openmetadata_database_service.example "ServiceName"
+terraform import openmetadata_domain.example "DomainName"
 ```
 
 ## Release
@@ -101,10 +103,6 @@ Releases are automated via [GoReleaser](https://goreleaser.com/) and GitHub Acti
 
 The GitHub Actions workflow builds multi-platform binaries, signs checksums with GPG, and publishes a GitHub Release.
 
-## License
-
-[Apache License 2.0](LICENSE)
-
 ## Architecture
 
 ```
@@ -112,19 +110,24 @@ The GitHub Actions workflow builds multi-platform binaries, signs checksums with
 ├── internal/
 │   ├── client/client.go             # HTTP client (auth, CRUD, error handling)
 │   ├── provider/provider.go         # Provider config (host, token, resource registry)
+│   │                                # + acceptance tests (one per resource)
 │   └── resources/
 │       ├── common.go                # Shared schema attributes + JSON helpers
 │       ├── team.go                  # openmetadata_team
 │       ├── classification.go        # openmetadata_classification
 │       ├── tag.go                   # openmetadata_tag
 │       ├── glossary.go              # openmetadata_glossary
-│       └── glossary_term.go         # openmetadata_glossary_term
-├── tools/codegen/                   # Resource code generator
+│       ├── glossary_term.go         # openmetadata_glossary_term
+│       ├── policy.go                # openmetadata_policy
+│       ├── role.go                  # openmetadata_role
+│       ├── database_service.go      # openmetadata_database_service
+│       └── domain.go                # openmetadata_domain
+├── .github/skills/codegen/          # AI codegen skill for new resources
 ├── examples/                        # Example Terraform configs
-├── docker/                          # Dockerfile for containerized builds
+├── docker/test/                     # OpenMetadata stack for acceptance tests
 └── Makefile                         # Build, test, install targets
 ```
 
 ## License
 
-Apache 2.0
+[Apache License 2.0](LICENSE)

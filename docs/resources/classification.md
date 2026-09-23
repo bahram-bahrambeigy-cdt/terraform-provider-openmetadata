@@ -33,7 +33,7 @@ resource "openmetadata_classification" "data_quality" {
 
 - `display_name` (String) Human-readable display name.
 - `domains` (List of String) Fully qualified names of the domains this resource belongs to.
-- `mutually_exclusive` (Boolean) When true, tags in this classification are mutually exclusive (entity can have only one). When false, multiple tags can coexist.
+- `mutually_exclusive` (Boolean) When true, tags in this classification are mutually exclusive (entity can have only one). When false, multiple tags can coexist. Changing this value forces a new resource.
 - `owners` (Attributes List) Owners of this resource. (see [below for nested schema](#nestedatt--owners))
 
 ### Read-Only

@@ -9,7 +9,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/bahram-cdt/terraform-provider-openmetadata/internal/provider"
+	"github.com/Codility/terraform-provider-openmetadata/internal/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
 
@@ -18,7 +18,7 @@ var version string = "dev"
 
 func main() {
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/bahram-cdt/openmetadata",
+		Address: "registry.terraform.io/codility/openmetadata",
 	}
 
 	err := providerserver.Serve(context.Background(), provider.New(version), opts)

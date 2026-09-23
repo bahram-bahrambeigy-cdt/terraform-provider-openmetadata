@@ -1,4 +1,4 @@
-module github.com/bahram-cdt/terraform-provider-openmetadata
+module github.com/Codility/terraform-provider-openmetadata
 
 go 1.25.0
 
