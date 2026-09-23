@@ -128,6 +128,10 @@ The GitHub Actions workflow builds multi-platform binaries, signs checksums with
 └── Makefile                         # Build, test, install targets
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). To report a vulnerability, see [SECURITY.md](SECURITY.md) — do not open a public issue.
+
 ## License
 
 [Apache License 2.0](LICENSE)
