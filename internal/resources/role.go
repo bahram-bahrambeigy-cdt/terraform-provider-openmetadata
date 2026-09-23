@@ -9,11 +9,11 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/Codility/terraform-provider-openmetadata/internal/client"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
-	"github.com/bahram-cdt/terraform-provider-openmetadata/internal/client"
 )
 
 var _ resource.Resource = &RoleResource{}
@@ -26,13 +26,13 @@ type RoleResource struct {
 }
 
 type RoleResourceModel struct {
-	ID  types.String `tfsdk:"id"`
-	Name types.String `tfsdk:"name"`
+	ID          types.String `tfsdk:"id"`
+	Name        types.String `tfsdk:"name"`
 	DisplayName types.String `tfsdk:"display_name"`
 	Description types.String `tfsdk:"description"`
-	Policies types.List `tfsdk:"policies"`
-	Domains types.List `tfsdk:"domains"`
-	FQN types.String `tfsdk:"fully_qualified_name"`
+	Policies    types.List   `tfsdk:"policies"`
+	Domains     types.List   `tfsdk:"domains"`
+	FQN         types.String `tfsdk:"fully_qualified_name"`
 }
 
 func NewRoleResource() resource.Resource {
@@ -47,16 +47,16 @@ func (r *RoleResource) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 	resp.Schema = schema.Schema{
 		Description: "Manages an OpenMetadata Role.",
 		Attributes: map[string]schema.Attribute{
-			"id":                   IDAttribute(),
+			"id":           IDAttribute(),
 			"name":         NameAttribute(),
 			"display_name": DisplayNameAttribute(),
 			"description":  DescriptionAttribute(false),
 			"policies": schema.ListAttribute{
 				Description: "Policies that is attached to this role. At least one policy is required.",
-				Required: true,
+				Required:    true,
 				ElementType: types.StringType,
 			},
-			"domains": DomainsAttribute(),
+			"domains":              DomainsAttribute(),
 			"fully_qualified_name": FullyQualifiedNameAttribute(),
 		},
 	}

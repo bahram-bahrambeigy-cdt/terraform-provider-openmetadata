@@ -33,7 +33,7 @@ resource "openmetadata_glossary" "business_glossary" {
 
 - `display_name` (String) Human-readable display name.
 - `domains` (List of String) Fully qualified names of the domains this resource belongs to.
-- `mutually_exclusive` (Boolean) When true, glossary terms that are direct children are mutually exclusive.
+- `mutually_exclusive` (Boolean) When true, glossary terms that are direct children are mutually exclusive. Changing this value forces a new resource.
 - `owners` (Attributes List) Owners of this resource. (see [below for nested schema](#nestedatt--owners))
 
 ### Read-Only

@@ -19,6 +19,9 @@ resource "openmetadata_database_service" "postgres" {
   display_name = "Production PostgreSQL"
   description  = "Main production PostgreSQL database."
 
+  # The connection_json structure varies per service_type.
+  # See the JSON schema for each connector:
+  # https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database
   connection_json = jsonencode({
     config = {
       type             = "Postgres"
@@ -42,7 +45,7 @@ resource "openmetadata_database_service" "postgres" {
 
 ### Optional
 
-- `connection_json` (String, Sensitive) Database connection configuration as a JSON string. The structure depends on the service_type. Example: {"config":{"type":"Mysql","hostPort":"localhost:3306"}}
+- `connection_json` (String, Sensitive) Database connection configuration as a JSON string. The structure depends on the service_type. See the JSON schema for each connector at: https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database You can also inspect your instance's Swagger UI at {host}/swagger.html under PUT /v1/services/databaseServices.
 - `description` (String) Markdown description of the resource.
 - `display_name` (String) Human-readable display name.
 - `domains` (List of String) Fully qualified names of the domains this resource belongs to.

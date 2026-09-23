@@ -37,8 +37,8 @@ resource "openmetadata_team" "data_engineering" {
 - `email` (String) Email address of the team.
 - `is_joinable` (Boolean) Whether any user can join this team during sign up.
 - `owners` (Attributes List) Owners of this resource. (see [below for nested schema](#nestedatt--owners))
-- `parents` (List of String) UUIDs of parent teams.
-- `policies` (List of String) UUIDs of policies attached to this team.
+- `parents` (List of String) Names or fully qualified names of parent teams. When omitted, OpenMetadata automatically places the team under the root Organisation team; this default is not reflected in state.
+- `policies` (List of String) Names or fully qualified names of policies attached to this team.
 - `team_type` (String) Type of team: Group, Department, Division, BusinessUnit, or Organization.
 
 ### Read-Only
